@@ -1,15 +1,20 @@
 namespace SpriteKind {
     export const Fragment = SpriteKind.create()
 }
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (Kael.overlapsWith(Fragment_Of_Future)) {
-    	
-    } else if (Kael.overlapsWith(Fragment_Of_Past)) {
-    	
-    } else if (Kael.overlapsWith(Fragment_Of_Present)) {
-    	
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Fragment, function (sprite, otherSprite) {
+    if (controller.A.isPressed()) {
+        if (Kael.overlapsWith(Fragment_Of_Present)) {
+            Enter_Rift(0)
+        } else if (Kael.overlapsWith(Fragment_Of_Past)) {
+            Enter_Rift(1)
+        } else if (Kael.overlapsWith(Fragment_Of_Future)) {
+            Enter_Rift(2)
+        }
     }
 })
+function Enter_Rift (Type: number) {
+    Kael.sayText(Type)
+}
 function Generate_Fragments () {
     for (let value of tiles.getTilesByType(tiles.util.object0)) {
         Fragment_Of_Present = sprites.create(img`
@@ -78,9 +83,9 @@ function Generate_Fragments () {
         tiles.setTileAt(value, sprites.castle.tileGrass3)
     }
 }
-let Fragment_Of_Present: Sprite = null
-let Fragment_Of_Past: Sprite = null
 let Fragment_Of_Future: Sprite = null
+let Fragment_Of_Past: Sprite = null
+let Fragment_Of_Present: Sprite = null
 let Kael: Sprite = null
 tiles.loadMap(tiles.createMap(tilemap`level2`))
 Generate_Fragments()
