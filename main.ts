@@ -16,3 +16,4 @@ let Kael = sprites.create(img`
     . . . . . f f f f f f . . . . . 
     . . . . . f f . . f f . . . . . 
     `, SpriteKind.Player)
+tiles.loadMap(tiles.createMap(tilemap`level2`))
