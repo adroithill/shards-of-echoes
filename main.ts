@@ -1,3 +1,31 @@
+namespace SpriteKind {
+    export const Fragment = SpriteKind.create()
+}
+function Generate_Fragments () {
+    for (let value of tiles.getTilesByType(tiles.util.object2)) {
+        Fragment_Of_Future = sprites.create(img`
+            . . . . . . 6 6 . . . . . . . . 
+            . . . . . 6 b b 6 . . . . . . . 
+            . . . . 6 b 5 b 6 . . . . . . . 
+            . . . . 6 b b b b 6 . . . . . . 
+            . . . 6 b b b 5 b 6 . . . . . . 
+            . . . 6 b 5 b b b 6 . . . . . . 
+            . . . 6 b b b b b 5 6 . . . . . 
+            . . . 6 5 b b 5 b b 6 . . . . . 
+            . . . 6 c c b b b b 6 . . . . . 
+            . . . . 6 c c c c c 6 . . . . . 
+            . . . . 6 c c c c c 6 . . . . . 
+            . . . . 6 c c c c 6 . . . . . . 
+            . . . . . 6 c c c 6 . . . . . . 
+            . . . . . 6 c c 6 . . . . . . . 
+            . . . . . . 6 c 6 . . . . . . . 
+            . . . . . . . 6 . . . . . . . . 
+            `, SpriteKind.Fragment)
+        tiles.placeOnTile(Fragment_Of_Future, value)
+        tiles.setTileAt(value, sprites.castle.tileGrass3)
+    }
+}
+let Fragment_Of_Future: Sprite = null
 let Kael = sprites.create(img`
     . . . . . . f f f f . . . . . . 
     . . . . f f f 2 2 f f f . . . . 
@@ -17,3 +45,7 @@ let Kael = sprites.create(img`
     . . . . . f f . . f f . . . . . 
     `, SpriteKind.Player)
 tiles.loadMap(tiles.createMap(tilemap`level2`))
+controller.moveSprite(Kael)
+scene.cameraFollowSprite(Kael)
+tiles.placeOnTile(Kael, tiles.getTileLocation(7, 8))
+Generate_Fragments()
