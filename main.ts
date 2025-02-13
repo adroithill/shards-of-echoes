@@ -1,19 +1,24 @@
 namespace SpriteKind {
     export const Fragment = SpriteKind.create()
 }
+function Find_Tilemap_Id () {
+    if (tiles.getLoadedMap() == tiles.createMap(tilemap`level2`) || (tiles.getLoadedMap() == tiles.createMap(tilemap`level3`) || tiles.getLoadedMap() == tiles.createMap(tilemap`level4`))) {
+    	
+    }
+}
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Fragment, function (sprite, otherSprite) {
     if (controller.A.isPressed()) {
-        if (Kael.overlapsWith(Fragment_Of_Present)) {
+        if (otherSprite == Fragment_Of_Present) {
             Enter_Rift(0)
-        } else if (Kael.overlapsWith(Fragment_Of_Past)) {
+        } else if (otherSprite == Fragment_Of_Past) {
             Enter_Rift(1)
-        } else if (Kael.overlapsWith(Fragment_Of_Future)) {
+        } else if (otherSprite == Fragment_Of_Future) {
             Enter_Rift(2)
         }
     }
 })
 function Enter_Rift (Type: number) {
-    Kael.sayText(Type)
+	
 }
 function Generate_Fragments () {
     for (let value of tiles.getTilesByType(tiles.util.object0)) {
@@ -86,10 +91,9 @@ function Generate_Fragments () {
 let Fragment_Of_Future: Sprite = null
 let Fragment_Of_Past: Sprite = null
 let Fragment_Of_Present: Sprite = null
-let Kael: Sprite = null
 tiles.loadMap(tiles.createMap(tilemap`level2`))
 Generate_Fragments()
-Kael = sprites.create(img`
+let Kael = sprites.create(img`
     . . . . . . f f f f . . . . . . 
     . . . . f f f 2 2 f f f . . . . 
     . . . f f f 2 2 2 2 f f f . . . 
